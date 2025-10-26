@@ -1,0 +1,5 @@
+{
+  "name": "Hệ thống chấm Điểm Speaking - Tiếng Anh Ms Hồng",
+  "description": "Một ứng dụng cho học sinh nộp bài tập nói (âm thanh/video) và cho giáo viên chấm điểm, xem bản ghi được tạo bởi AI và theo dõi kết quả của lớp.",
+  "requestFramePermissions": []
+}
