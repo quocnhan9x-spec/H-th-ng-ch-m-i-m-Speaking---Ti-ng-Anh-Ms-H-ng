@@ -21,23 +21,34 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'   # bỏ cache: 'npm' vì bạn chưa có package-lock.json
+          node-version: '20'
 
       - name: Install dependencies
-        run: npm install       # dùng install thay cho npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Build project
         run: npm run build
 
+      # SPA: tránh 404 khi refresh
       - name: Fix SPA refresh issue
         run: cp dist/index.html dist/404.html
 
-      - uses: actions/upload-pages-artifact@v3
+      # Bắt buộc cho GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
