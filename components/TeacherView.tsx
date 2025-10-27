@@ -1035,6 +1035,30 @@ export const TeacherView: React.FC = () => {
               <p><span className="font-semibold">Học sinh:</span> {gradingSubmission.studentName}</p>
               <p><span className="font-semibold">Bài tập:</span> {assignments.find((a: Assignment) => a.id === gradingSubmission.assignmentId)?.title}</p>
 
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Bài nộp của Học sinh: <span className="font-normal text-slate-500">{gradingSubmission.submissionFileName}</span></label>
+                <div className="bg-slate-100 p-2 rounded-md">
+                  {(() => {
+                    const url = gradingSubmission.submissionFileUrl.toLowerCase();
+                    const isVideo = ['.mp4', '.mov', '.webm', '.ogv', '.mkv', '.avi'].some(ext => url.endsWith(ext));
+                    
+                    if (isVideo) {
+                      return (
+                        <video controls src={gradingSubmission.submissionFileUrl} className="w-full rounded aspect-video bg-black">
+                          Trình duyệt của bạn không hỗ trợ thẻ video.
+                        </video>
+                      );
+                    } else {
+                      return (
+                        <audio controls src={gradingSubmission.submissionFileUrl} className="w-full">
+                          Trình duyệt của bạn không hỗ trợ thẻ audio.
+                        </audio>
+                      );
+                    }
+                  })()}
+                </div>
+              </div>
+
               {(() => {
                 const assignment = assignments.find((a: Assignment) => a.id === gradingSubmission.assignmentId);
                 const isFreestyle = assignment?.isFreestyle;
