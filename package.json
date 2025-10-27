@@ -1,23 +1,24 @@
 {
-  "name": "hệ-thống-chấm-điểm-speaking---tiếng-anh-ms-hồng",
+  "name": "he-thong-cham-diem-speaking-tieng-anh-ms-hong",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "engines": { "node": ">=18" },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "recharts": "^3.3.0",
-    "react": "^19.2.0",
     "@google/genai": "^1.26.0",
-    "react-dom": "^19.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^3.3.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
+    "typescript": "^5.6.3",
     "vite": "^6.2.0"
   }
 }
